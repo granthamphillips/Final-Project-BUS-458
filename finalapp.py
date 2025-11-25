@@ -1,0 +1,89 @@
+
+# -*- coding: utf-8 -*-
+import streamlit as st
+import pickle
+import pandas as pd
+import sklearn  # This is needed for the pickle file to load!
+
+# Load the trained model
+# --- Put the Model in Drive First---
+with open("/content/sample_data/my_model (2).pkl", "rb") as file:
+    model = pickle.load(file)
+
+# Title for the app
+# st.title("Loan Approval")
+st.markdown(
+    "<h1 style='text-align: center; background-color: #ffcccc; padding: 10px; color: #cc0000;'><b>Home Equity Loan Approval</b></h1>",
+    unsafe_allow_html=True
+)
+
+# Numeric inputs
+st.header("Enter Loan Applicant's Details")
+
+# Input fields for numeric values
+Requested_Loan_Amount = st.slider("Loan Amount (Requested_Loan_Amount)", min_value=1000, max_value=500000, step=1000)
+Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=1000000.0, step=1000.0)
+Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=1000000.0, step=1000.0)
+FICO_score = st.slider("FICO Score", min_value=300, max_value=850, step=1.0)
+derog = st.number_input("Derogatory Reports (DEROG)", min_value=0, max_value=15, step=1)
+Ever_Bankrupt_or_Forclose = st.selectbox("Ever Bankrupt or Forclose)", options=list(range(0, 1)))  # Options from 0 to 10
+
+
+# Categorical inputs with options
+Reason = st.selectbox("Reason for Loan (REASON)", ["Home_Improvement", "Credit_card_refinancing", "major_purchase", "cover_an_unexpected_cost", "debt_consolidation", "other"])
+Employment_Sector = st.selectbox("Employment Sector", ["financials", "information_technology", "Mgr", "health_care", "industrials", "real_estate", "materials", "utilities", "energy", "consumer_staples", "communication_services", "communication_services", "Unknown"])
+Employment_Status = st.selectbox("Employment Status", ["full_time", "part_time", "unemployed"])
+Lender = st.selectbox("Lender", ["A", "B", "C"])
+
+# Create the input data as a DataFrame
+input_data = pd.DataFrame({
+    "Requested_Loan_Amount": [Requested_Loan_Amount],
+    "Monthly_Housing_Payment": [Monthly_Housing_Payment],
+    "Monthly_Gross_Income": [Monthly_Gross_Income],
+    "FICO_score": [FICO_score],
+    "Ever_Bankrupt_or_Foreclose": [Ever_Bankrupt_or_Foreclose],
+    "Reason": [Reason],
+    "Employment_Sector": [Employment_Sector],
+    "Employment_Status": [Employment_Status],
+    "Lender": [Lender],
+})
+
+# --- Prepare Data for Prediction ---
+# 1. One-hot encode the user's input.
+input_data_encoded = pd.get_dummies(input_data, columns=['Lender', 'Employment_Sector', 'Employment_Status', 'Reason'])
+
+# 2. Add any "missing" columns the model expects (fill with 0).
+model_columns = model.feature_names_in_
+for col in model_columns:
+    if col not in input_data_encoded.columns:
+        input_data_encoded[col] = 0
+
+# 3. Reorder/filter columns to exactly match the model's training data.
+input_data_encoded = input_data_encoded[model_columns]
+
+# Predict button
+if st.button("Evaluate Loan"):
+    # Predict using the loaded model
+    prediction = model.predict(input_data_encoded)[0]
+
+    # Display result
+    if prediction == 1:
+        st.write("The prediction is: **Bad Loan** 🚫")
+    else:
+        st.write("The prediction is: **Good Loan** 💲")
+
+
+
+        """
+What happens if the user enters a value not in the training data?
+
+Example: User enters REASON = 'Vacation', but the model only knows 'DebtCon' and 'HomeImp'.
+
+1. pd.get_dummies creates a new column: REASON_Vacation = 1.
+2. The code then adds the *known* columns: REASON_DebtCon = 0 and REASON_HomeImp = 0.
+3. The final filtering step *drops* the unknown REASON_Vacation column because it's not in the
+   model's expected feature list.
+
+Result: The model receives REASON_DebtCon = 0 and REASON_HomeImp = 0, which correctly
+treats the unknown 'Vacation' input as "none of the known categories" (i.e., "Other").
+"""
