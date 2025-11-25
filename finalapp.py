@@ -53,7 +53,36 @@ input_data = pd.DataFrame({
 input_data_encoded = pd.get_dummies(input_data, columns=['Lender', 'Employment_Sector', 'Employment_Status', 'Reason'])
 
 # 2. Add any "missing" columns the model expects (fill with 0).
-model_columns = model.feature_names_in_
+model_columns = model_columns = [
+    'Requested_Loan_Amount',
+    'FICO_score',
+    'Monthly_Gross_Income',
+    'Monthly_Housing_Payment',
+    'Ever_Bankrupt_or_Foreclose',
+    'fico_income',
+    'income_housing_ratio',
+    'request_to_income',
+    'Reason_credit_card_refinancing',
+    'Reason_debt_conslidation',
+    'Reason_home_improvement',
+    'Reason_major_purchase',
+    'Reason_other',
+    'Employment_Status_part_time',
+    'Employment_Status_unemployed',
+    'Employment_Sector_consumer_discretionary',
+    'Employment_Sector_consumer_staples',
+    'Employment_Sector_energy',
+    'Employment_Sector_financials',
+    'Employment_Sector_health_care',
+    'Employment_Sector_industrials',
+    'Employment_Sector_information_technology',
+    'Employment_Sector_materials',
+    'Employment_Sector_real_estate',
+    'Employment_Sector_unknown',
+    'Employment_Sector_utilities',
+    'Lender_B',
+    'Lender_C'
+]
 for col in model_columns:
     if col not in input_data_encoded.columns:
         input_data_encoded[col] = 0
