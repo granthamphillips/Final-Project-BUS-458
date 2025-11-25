@@ -24,7 +24,7 @@ st.header("Enter Loan Applicant's Details")
 Requested_Loan_Amount = st.slider("Loan Amount (Requested_Loan_Amount)", min_value=1000, max_value=500000, step=1000)
 Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=1000000.0, step=1000.0)
 Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=1000000.0, step=1000.0)
-FICO_score = st.slider("FICO Score", min_value=0, max_value=850, step=1.0)
+FICO_score = st.slider("FICO Score", min_value=300, max_value=850, value =700, step=1.0, key="fico_slider")
 derog = st.number_input("Derogatory Reports (DEROG)", min_value=0, max_value=15, step=1)
 Ever_Bankrupt_or_Forclose = st.selectbox("Ever Bankrupt or Forclose)", options=list(range(0, 1)))  # Options from 0 to 10
 
