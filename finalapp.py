@@ -3,7 +3,6 @@
 import streamlit as st
 import pickle
 import pandas as pd
-import sklearn  # This is needed for the pickle file to load!
 
 # Load the trained model
 # --- Put the Model in Drive First---
