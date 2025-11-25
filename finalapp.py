@@ -6,7 +6,7 @@ import pandas as pd
 
 # Load the trained model
 # --- Put the Model in Drive First---
-with open("/content/sample_data/my_model (2).pkl", "rb") as file:
+with open("/content/sample_data/my_model_final.pkl", "rb") as file:
     model = pickle.load(file)
 
 # Title for the app
