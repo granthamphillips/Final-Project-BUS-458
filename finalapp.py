@@ -3,9 +3,10 @@
 import streamlit as st
 import pickle
 import pandas as pd
+import sklearn
+import numpy as np
 
 # Load the trained model
-# --- Put the Model in Drive First---
 with open("my_model_final.pkl", "rb") as file:
     model = pickle.load(file)
 
