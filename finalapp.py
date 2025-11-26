@@ -9,6 +9,7 @@ import numpy as np
 # Load the trained model
 with open("my_model_scaler.pkl", "rb") as file:
     model = pickle.load(file)
+    sclaer = bundle["scaler"]
 
 # Title for the app
 # st.title("Loan Approval")
@@ -92,7 +93,8 @@ input_data_encoded = input_data_encoded[model_columns]
 # Predict button
 if st.button("Evaluate Loan"):
     # Predict using the loaded model
-    prediction = model.predict(input_data_encoded)[0]
+    input_scaled = scaler.transform(input_data_encoded)
+    prediction = model.predict(input_scaled)[0]
 
     # Display result
     if prediction == 1:
