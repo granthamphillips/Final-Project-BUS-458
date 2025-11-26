@@ -163,9 +163,17 @@ input_data_encoded = input_data_encoded[model_columns]
 # Predict button
 if st.button("Evaluate Loan"):
     # Predict using the loaded model
-    input_scaled = scaler.transform(input_data_encoded)
-    prediction = model.predict(input_scaled)[0]
+    # Scale ONLY numeric features
+    numeric_cols = [
+        "Requested_Loan_Amount",
+        "Monthly_Housing_Payment",
+        "Monthly_Gross_Income",
+        "FICO_score"
+    ]
+    input_data_encoded[numeric_cols] = scaler.transform(input_data_encoded[numeric_cols])
 
+    # Predict using the loaded model
+    prediction = model.predict(input_data_encoded)[0]
     # Display result
     if prediction == 1:
         st.write("The prediction is: **Approved** ✅")
