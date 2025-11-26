@@ -24,9 +24,9 @@ st.markdown(
 st.header("Enter Loan Applicant's Details")
 
 # Input fields for numeric values
-Requested_Loan_Amount = st.slider("Loan Amount (Requested_Loan_Amount)", min_value=5000, max_value=2500000, step=1000)
-Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=50000, step=100.0)
-Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=200000, step=1000.0)
+Requested_Loan_Amount = st.slider("Loan Amount (Requested_Loan_Amount)", min_value=5000.0, max_value=2500000.0, step=1000.0)
+Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=50000.0, step=100.0)
+Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=200000.0, step=1000.0)
 FICO_score = st.slider("FICO Score", min_value=300, max_value=850, value =700, step=10, key="fico_slider")
 Ever_Bankrupt_or_Foreclose = st.selectbox( "Ever Bankrupt or Foreclose?", [0,1], format_func=lambda x: "No" if x == 0 else "Yes")
 # Categorical inputs with options
