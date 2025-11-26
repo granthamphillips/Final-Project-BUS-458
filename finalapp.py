@@ -32,9 +32,65 @@ Ever_Bankrupt_or_Foreclose = st.selectbox("Ever Bankrupt or Foreclose)", options
 
 
 # Categorical inputs with options
-Reason = st.selectbox("Reason for Loan (REASON)", ["Home_Improvement", "Credit_card_refinancing", "major_purchase", "cover_an_unexpected_cost", "debt_consolidation", "other"])
-Employment_Sector = st.selectbox("Employment Sector", ["financials", "information_technology", "Mgr", "health_care", "industrials", "real_estate", "materials", "utilities", "energy", "consumer_staples", "communication_services", "communication_services", "Unknown"])
-Employment_Status = st.selectbox("Employment Status", ["full_time", "part_time", "unemployed"])
+reason_display = st.selectbox(
+    "Reason for Loan",
+    ["Home Improvement", "Credit Card Refinancing", "Major Purchase", "Unexpected Cost", "Debt Consolidation", "Other"]
+)
+
+reason_map = {
+    "Home Improvement": "Home_Improvement",
+    "Credit Card Refinancing": "Credit_card_refinancing",
+    "Major Purchase": "major_purchase",
+    "Unexpected Cost": "cover_an_unexpected_cost",
+    "Debt Consolidation": "debt_consolidation",
+    "Other": "other"
+}
+
+Reason = reason_map[reason_display]
+
+
+# EMPLOYMENT SECTOR mapping
+sector_display = st.selectbox(
+    "Employment Sector",
+    ["Financials", "Information Technology", "Manager", "Health Care", "Industrials", "Real Estate",
+     "Materials", "Utilities", "Energy", "Consumer Staples", "Communication Services",
+     "Other"]
+)
+
+sector_map = {
+    "Financials": "financials",
+    "Information Technology": "information_technology",
+    "Manager": "mgr",
+    "Health Care": "health_care",
+    "Industrials": "industrials",
+    "Real Estate": "real_estate",
+    "Materials": "materials",
+    "Utilities": "utilities",
+    "Energy": "energy",
+    "Consumer Staples": "consumer_staples",
+    "Communication Services": "communication_services",
+    "Other": "Unknown"
+}
+
+Employment_Sector = sector_map[sector_display]
+
+
+# EMPLOYMENT STATUS mapping
+status_display = st.selectbox(
+    "Employment Status",
+    ["Full Time", "Part Time", "Unemployed"]
+)
+
+status_map = {
+    "Full Time": "full_time",
+    "Part Time": "part_time",
+    "Unemployed": "unemployed"
+}
+
+Employment_Status = status_map[status_display]
+
+
+# LENDER (no mapping needed)
 Lender = st.selectbox("Lender", ["A", "B", "C"])
 
 # Create the input data as a DataFrame
