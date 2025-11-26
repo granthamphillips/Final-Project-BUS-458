@@ -163,11 +163,6 @@ input_data_encoded = input_data_encoded[model_columns]
 # Predict button
 if st.button("Evaluate Loan"):
 
-    # 3. Reorder/filter columns to exactly match the model's training data.
-input_data_encoded = input_data_encoded[model_columns]
-
-# Predict button
-if st.button("Evaluate Loan"):
     
     # 1. Scale using the SAME scaler as training, on ALL features
     input_scaled = scaler.transform(input_data_encoded)
