@@ -162,19 +162,21 @@ input_data_encoded = input_data_encoded[model_columns]
 
 # Predict button
 if st.button("Evaluate Loan"):
-    # Predict using the loaded model
-    # Scale ONLY numeric features
-# Numeric columns to scale (must match training exactly)
-numeric_cols = [
-    "Requested_Loan_Amount",
-    "Monthly_Housing_Payment",
-    "Monthly_Gross_Income",
-    "FICO_score",
-    "Ever_Bankrupt_or_Foreclose"
-]
 
-# Apply scaling ONLY to those numeric columns
-input_data_encoded[numeric_cols] = scaler.transform(input_data_encoded[numeric_cols])
+     # 1. Select ONLY numeric features
+    numeric_cols = [
+        "Requested_loan_Amount",
+        "Monthly_Housing_Payment",
+        "Monthly_Gross_Income",
+        "FICO_score",
+        "Ever_Bankrupt_or_Foreclose"
+    ]
+
+    # 2. Apply scaling ONLY to those numeric columns
+    input_data_encoded[numeric_cols] = scaler.transform(input_data_encoded[numeric_cols])
+
+    # 3. Predict using the loaded model
+    prediction = model.predict(input_data_encoded)[0]
 
 
     # Predict using the loaded model
