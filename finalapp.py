@@ -32,9 +32,78 @@ Ever_Bankrupt_or_Foreclose = st.selectbox("Ever Bankrupt or Foreclose)", options
 
 
 # Categorical inputs with options
-Reason = st.selectbox("Reason for Loan (REASON)", ["Home_Improvement", "Credit_card_refinancing", "major_purchase", "cover_an_unexpected_cost", "debt_consolidation", "other"])
-Employment_Sector = st.selectbox("Employment Sector", ["financials", "information_technology", "Mgr", "health_care", "industrials", "real_estate", "materials", "utilities", "energy", "consumer_staples", "communication_services", "communication_services", "Unknown"])
-Employment_Status = st.selectbox("Employment Status", ["full_time", "part_time", "unemployed"])
+# --- Categorical inputs with prettier labels (model values unchanged) ---
+
+# Reason for Loan
+reason_options = [
+    "Home_Improvement",
+    "credit_card_refinancing",
+    "major_purchase",
+    "cover_an_unexpected_cost",
+    "debt_conslidation",
+    "other"
+]
+
+reason_labels = {
+    "Home_Improvement": "Home Improvement",
+    "credit_card_refinancing": "Credit Card Refinancing",
+    "major_purchase": "Major Purchase",
+    "cover_an_unexpected_cost": "Cover an Unexpected Cost",
+    "debt_conslidation": "Debt Consolidation",
+    "other": "Other"
+}
+
+Reason = st.selectbox(
+    "Reason for Loan",
+    options=reason_options,
+    format_func=lambda x: reason_labels[x]
+)
+
+# Employment Sector
+sector_options = [
+    "financials", "information_technology", "Mgr", "health_care", "industrials",
+    "real_estate", "materials", "utilities", "energy", "consumer_staples",
+    "consumer_discretionary", "communication_services", "unknown"
+]
+
+sector_labels = {
+    "financials": "Financials",
+    "information_technology": "Information Technology",
+    "Mgr": "Manager",
+    "health_care": "Health Care",
+    "industrials": "Industrials",
+    "real_estate": "Real Estate",
+    "materials": "Materials",
+    "utilities": "Utilities",
+    "energy": "Energy",
+    "consumer_staples": "Consumer Staples",
+    "consumer_discretionary": "Consumer Discretionary",
+    "communication_services": "Communication Services",
+    "unknown": "Other / Unknown"
+}
+
+Employment_Sector = st.selectbox(
+    "Employment Sector",
+    options=sector_options,
+    format_func=lambda x: sector_labels[x]
+)
+
+# Employment Status
+status_options = ["full_time", "part_time", "unemployed"]
+
+status_labels = {
+    "full_time": "Full Time",
+    "part_time": "Part Time",
+    "unemployed": "Unemployed"
+}
+
+Employment_Status = st.selectbox(
+    "Employment Status",
+    options=status_options,
+    format_func=lambda x: status_labels[x]
+)
+
+# Lender (already fine)
 Lender = st.selectbox("Lender", ["A", "B", "C"])
 
 
