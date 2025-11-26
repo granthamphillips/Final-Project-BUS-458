@@ -79,7 +79,7 @@ sector_labels = {
     "consumer_staples": "Consumer Staples",
     "consumer_discretionary": "Consumer Discretionary",
     "communication_services": "Communication Services",
-    "unknown": "Other / Unknown"
+    "unknown": "Other"
 }
 
 Employment_Sector = st.selectbox(
