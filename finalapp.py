@@ -9,7 +9,7 @@ import numpy as np
 # Load the trained model
 with open("my_model_scaler.pkl", "rb") as file:
     model = pickle.load(file)
-    sclaer = bundle["scaler"]
+    scaler = bundle["scaler"]
 
 # Title for the app
 # st.title("Loan Approval")
