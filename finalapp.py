@@ -165,7 +165,7 @@ if st.button("Evaluate Loan"):
 
      # 1. Select ONLY numeric features
     numeric_cols = [
-        "Requested_loan_Amount",
+        "Requested_Loan_Amount",
         "Monthly_Housing_Payment",
         "Monthly_Gross_Income",
         "FICO_score",
