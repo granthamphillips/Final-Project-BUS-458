@@ -7,7 +7,7 @@ import sklearn
 import numpy as np
 
 # Load the trained model
-with open("my_model_final.pkl", "rb") as file:
+with open("my_model_scaler.pkl", "rb") as file:
     model = pickle.load(file)
 
 # Title for the app
