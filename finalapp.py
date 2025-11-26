@@ -16,7 +16,7 @@ with open("my_model_scaler.pkl", "rb") as file:
 # Title for the app
 # st.title("Loan Approval")
 st.markdown(
-    "<h1 style='text-align: center; background-color: #ffcccc; padding: 10px; color: #cc0000;'><b>Home Equity Loan Approval</b></h1>",
+    "<h1 style='text-align: center; background-color: #ffcccc; padding: 10px; color: #cc0000;'><b>Loan Approval</b></h1>",
     unsafe_allow_html=True
 )
 
