@@ -39,7 +39,6 @@ status_labels = {
     "part_time": "Part Time",
     "unemployed": "Unemployed"
 }
-Ever_Bankrupt_or_Foreclose = st.selectbox( "Ever Bankrupt or Foreclose?", [0,1], format_func=lambda x: "No" if x == 0 else "Yes")
 
 Employment_Status = st.selectbox(
     "Employment Status",
