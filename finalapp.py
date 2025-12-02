@@ -24,9 +24,9 @@ st.markdown(
 st.header("Enter Loan Applicant's Details")
 
 # Input fields for numeric values
-Requested_Loan_Amount = st.slider("Loan Amount (Requested_Loan_Amount)", min_value=5000.0, max_value=2500000.0, step=1000.0)
+Requested_Loan_Amount = st.slider("Loan Amount])", min_value=5000.0, max_value=2500000.0, step=1000.0)
 Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=50000.0, step=100.0)
-Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=200000.0, step=1000.0)
+Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=20000.0, step=1000.0)
 FICO_score = st.slider("FICO Score", min_value=300, max_value=850, value =700, step=10, key="fico_slider")
 Ever_Bankrupt_or_Foreclose = st.selectbox( "Ever Bankrupt or Foreclose?", [0,1], format_func=lambda x: "No" if x == 0 else "Yes")
 # Categorical inputs with options
@@ -177,18 +177,3 @@ if st.button("Evaluate Loan"):
     else:
         st.write("The prediction is: **Denied** 🚫")
 
-
-
-        """
-What happens if the user enters a value not in the training data?
-
-Example: User enters REASON = 'Vacation', but the model only knows 'DebtCon' and 'HomeImp'.
-
-1. pd.get_dummies creates a new column: REASON_Vacation = 1.
-2. The code then adds the *known* columns: REASON_DebtCon = 0 and REASON_HomeImp = 0.
-3. The final filtering step *drops* the unknown REASON_Vacation column because it's not in the
-   model's expected feature list.
-
-Result: The model receives REASON_DebtCon = 0 and REASON_HomeImp = 0, which correctly
-treats the unknown 'Vacation' input as "none of the known categories" (i.e., "Other").
-"""
