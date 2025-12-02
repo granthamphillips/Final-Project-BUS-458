@@ -25,36 +25,26 @@ st.header("Enter Loan Applicant's Details")
 
 # Input fields for numeric values
 Requested_Loan_Amount = st.slider("Loan Amount", min_value=5000.0, max_value=2500000.0, step=1000.0)
-Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=50000.0, step=100.0)
-Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=20000.0, step=1000.0)
 FICO_score = st.slider("FICO Score", min_value=300, max_value=850, value =700, step=10, key="fico_slider")
-Ever_Bankrupt_or_Foreclose = st.selectbox( "Ever Bankrupt or Foreclose?", [0,1], format_func=lambda x: "No" if x == 0 else "Yes")
+Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=20000.0, step=1000.0)
+Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=50000.0, step=100.0)
 # Categorical inputs with options
 # --- Categorical inputs with prettier labels (model values unchanged) ---
 
-# Reason for Loan
-reason_options = [
-    "Home_Improvement",
-    "credit_card_refinancing",
-    "major_purchase",
-    "cover_an_unexpected_cost",
-    "debt_conslidation",
-    "other"
-]
+# Employment Status
+status_options = ["full_time", "part_time", "unemployed"]
 
-reason_labels = {
-    "Home_Improvement": "Home Improvement",
-    "credit_card_refinancing": "Credit Card Refinancing",
-    "major_purchase": "Major Purchase",
-    "cover_an_unexpected_cost": "Cover an Unexpected Cost",
-    "debt_conslidation": "Debt Consolidation",
-    "other": "Other"
+status_labels = {
+    "full_time": "Full Time",
+    "part_time": "Part Time",
+    "unemployed": "Unemployed"
 }
+Ever_Bankrupt_or_Foreclose = st.selectbox( "Ever Bankrupt or Foreclose?", [0,1], format_func=lambda x: "No" if x == 0 else "Yes")
 
-Reason = st.selectbox(
-    "Reason for Loan",
-    options=reason_options,
-    format_func=lambda x: reason_labels[x]
+Employment_Status = st.selectbox(
+    "Employment Status",
+    options=status_options,
+    format_func=lambda x: status_labels[x]
 )
 
 # Employment Sector
@@ -86,20 +76,32 @@ Employment_Sector = st.selectbox(
     format_func=lambda x: sector_labels[x]
 )
 
-# Employment Status
-status_options = ["full_time", "part_time", "unemployed"]
+# Reason for Loan
+reason_options = [
+    "Home_Improvement",
+    "credit_card_refinancing",
+    "major_purchase",
+    "cover_an_unexpected_cost",
+    "debt_conslidation",
+    "other"
+]
 
-status_labels = {
-    "full_time": "Full Time",
-    "part_time": "Part Time",
-    "unemployed": "Unemployed"
+reason_labels = {
+    "Home_Improvement": "Home Improvement",
+    "credit_card_refinancing": "Credit Card Refinancing",
+    "major_purchase": "Major Purchase",
+    "cover_an_unexpected_cost": "Cover an Unexpected Cost",
+    "debt_conslidation": "Debt Consolidation",
+    "other": "Other"
 }
 
-Employment_Status = st.selectbox(
-    "Employment Status",
-    options=status_options,
-    format_func=lambda x: status_labels[x]
+Reason = st.selectbox(
+    "Reason for Loan",
+    options=reason_options,
+    format_func=lambda x: reason_labels[x]
 )
+#Bankrupt
+Ever_Bankrupt_or_Foreclose = st.selectbox( "Ever Bankrupt or Foreclose?", [0,1], format_func=lambda x: "No" if x == 0 else "Yes")
 
 # Lender (already fine)
 Lender = st.selectbox("Lender", ["A", "B", "C"])
