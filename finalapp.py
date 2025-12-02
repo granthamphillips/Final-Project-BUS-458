@@ -25,7 +25,13 @@ st.header("Enter Loan Applicant's Details")
 
 # Input fields for numeric values
 Requested_Loan_Amount = st.slider("Loan Amount", min_value=5000.0, max_value=2500000.0, step=1000.0)
-st.write(f"**Selected Loan Amount:** `${Requested_Loan_Amount:,.0f}")
+col1, col2 = st.columns([4,1])
+
+with col1:
+    loan_amount = st.slider("Loan Amount", 1000.0, 250000.0, 1000.0)
+
+with col2:
+    st.write(f"`${loan_amount:,.0f}`")
 FICO_score = st.slider("FICO Score", min_value=300, max_value=850, value =700, step=10, key="fico_slider")
 Monthly_Gross_Income = st.slider("Monthly Income)", min_value=0.0, max_value=20000.0, step=1000.0)
 Monthly_Housing_Payment = st.slider("Housing Payment", min_value=0.0, max_value=50000.0, step=100.0)
